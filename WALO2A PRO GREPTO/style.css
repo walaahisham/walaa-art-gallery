@@ -1,0 +1,759 @@
+/* ==============================
+   General Reset & Base Styles
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f7f3ed;
+    color: #2d2722;
+    line-height: 1.6;
+}
+
+h1, h2, h3, .logo span, .section-title {
+    font-family: "Cormorant Garamond", serif;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input, textarea {
+    font-family: inherit;
+}
+
+
+/* ==============================
+   1. Navigation (Fixed & Dynamic Header)
+============================== */
+
+header {
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* تثبيت الهيدر أعلى الشاشة لتتبّع حركة الصفحة */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* لون غامق معتم مع ظل للأقسام الداكنة */
+header.dark-header {
+    background-color: rgba(12, 9, 7, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+header.dark-header .logo span {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header.dark-header nav a {
+    color: #f0f0f0;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+header.dark-header nav a::after {
+    background-color: #ffffff;
+}
+
+/* لون فاتح غني معتم للأقسام الفاتحة */
+header.light-header {
+    background-color: rgba(225, 217, 205, 0.96);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(45, 39, 34, 0.15);
+}
+
+header.light-header .logo span {
+    color: #1a1512;
+    font-weight: 600;
+}
+
+header.light-header nav a {
+    color: #201a15;
+    font-weight: 500;
+}
+
+header.light-header nav a::after {
+    background-color: #83613e;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.logo span {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 6px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav a {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    left: 0;
+    bottom: -6px;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* ==============================
+   2. Hero Section
+============================== */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    background: 
+        radial-gradient(
+            circle, 
+            rgba(20, 16, 13, 0.45) 0%, 
+            rgba(15, 12, 10, 0.85) 60%, 
+            rgba(10, 8, 6, 0.98) 100%
+        ),
+        url("w\ logo.png4.jpg") center / cover no-repeat;
+}
+
+.hero-content {
+    color: white;
+    padding: 20px;
+    max-width: 850px;
+    z-index: 2;
+}
+
+.hero-content p:first-child {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    letter-spacing: 10px;
+    margin-bottom: 12px;
+    color: #d8d0c8;
+}
+
+.hero-content h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 95px;
+    font-weight: 500;
+    letter-spacing: 12px;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.hero-content h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+}
+
+.hero-content p:nth-of-type(2) {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #e0e0e0;
+    margin-bottom: 35px;
+}
+
+.button {
+    display: inline-block;
+    padding: 14px 38px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease;
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border-color: #ffffff;
+}
+
+
+/* ==============================
+   3. About Section
+============================== */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background-color: #f7f3ed;
+    padding: 100px 8%;
+}
+
+.about-image {
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(45, 39, 34, 0.08);
+}
+
+.about-image img {
+    height: 520px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.04);
+}
+
+.about-text {
+    max-width: 520px;
+}
+
+.about-text .section-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #9a7650;
+    margin-bottom: 12px;
+}
+
+.about-text h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #2d2722;
+}
+
+.about-text p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    color: #5f554d;
+    margin-bottom: 18px;
+    line-height: 1.8;
+}
+
+
+/* ==============================
+   4. Gallery Section
+============================== */
+
+.gallery-section {
+    text-align: center;
+    background-color: #eee7dd;
+    padding: 100px 8%;
+}
+
+.gallery-section .section-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #9a7650;
+    margin-bottom: 12px;
+}
+
+.gallery-section h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 44px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.gallery-intro {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #665c54;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.art-card {
+    background-color: #f7f3ed;
+    overflow: hidden;
+    border: 1px solid #e0d7cc;
+    padding-bottom: 22px;
+    transition: all 0.35s ease;
+}
+
+.art-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(45, 39, 34, 0.12);
+}
+
+.art-card img {
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.art-card:hover img {
+    transform: scale(1.05);
+}
+
+.art-card h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 20px;
+    color: #2d2722;
+}
+
+.art-card p {
+    font-size: 13px;
+    padding: 6px 18px 0;
+    color: #70665e;
+}
+
+
+/* ==============================
+   5. Featured Artwork Section
+============================== */
+
+.featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background-color: #f7f3ed;
+    padding: 100px 8%;
+}
+
+.featured-text {
+    max-width: 520px;
+}
+
+.featured-text .section-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #9a7650;
+    margin-bottom: 12px;
+}
+
+.featured-text h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.featured-text p:last-child {
+    font-size: 15px;
+    color: #665c54;
+    line-height: 1.8;
+}
+
+.featured-image {
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(45, 39, 34, 0.08);
+}
+
+.featured-image img {
+    height: 500px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featured-image:hover img {
+    transform: scale(1.03);
+}
+
+
+/* ==============================
+   6. Art Styles Section
+============================== */
+
+.styles {
+    background-color: #2d2722;
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    padding: 100px 8%;
+}
+
+.styles .section-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #c4a27c;
+    margin-bottom: 12px;
+}
+
+.styles-intro h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 46px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.styles-intro p:last-child {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #d5cec7;
+}
+
+.style-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.style-item {
+    min-height: 130px;
+    border: 1px solid rgba(196, 162, 124, 0.3);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.style-item:hover {
+    background-color: #3b332d;
+    border-color: #c4a27c;
+    transform: translateY(-5px);
+}
+
+.style-item span {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: #c4a27c;
+}
+
+.style-item p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+}
+
+
+/* ==============================
+   7. Share Your Art & Community
+============================== */
+
+.share-section, .community-section {
+    padding: 100px 8%;
+    text-align: center;
+}
+
+.share-section {
+    background-color: #eee7dd;
+}
+
+.community-section {
+    background-color: #f7f3ed;
+}
+
+.share-section .section-title,
+.community-section .section-title {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #9a7650;
+    margin-bottom: 12px;
+}
+
+.share-section h2,
+.community-section h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 44px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+#artForm {
+    max-width: 650px;
+    margin: 40px auto 0;
+    padding: 45px;
+    background-color: #f7f3ed;
+    border: 1px solid #ddd2c5;
+    box-shadow: 0 15px 40px rgba(45, 39, 34, 0.06);
+    text-align: left;
+}
+
+#artForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #403830;
+}
+
+#artForm input,
+#artForm textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #cfc3b5;
+    background-color: #fffdf9;
+    color: #2d2722;
+    margin-bottom: 22px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+#artForm input:focus,
+#artForm textarea:focus {
+    border-color: #9a7650;
+}
+
+#artForm button {
+    width: 100%;
+    padding: 15px;
+    background-color: #2d2722;
+    color: #ffffff;
+    border: none;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#artForm button:hover {
+    background-color: #9a7650;
+}
+
+
+/* ==============================
+   8. Contact & Footer
+============================== */
+
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background-color: #eee7dd;
+    padding: 100px 8%;
+}
+
+.contact-text h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 46px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.contact-info {
+    margin-top: 30px;
+    padding-left: 20px;
+    border-left: 2px solid #9a7650;
+}
+
+.contact-info p {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #4e463f;
+}
+
+.contact-form {
+    padding: 45px;
+    background-color: #f7f3ed;
+    border: 1px solid #ddd2c5;
+    box-shadow: 0 15px 40px rgba(45, 39, 34, 0.06);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #403830;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #cfc3b5;
+    background-color: #fffdf9;
+    color: #2d2722;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 14px;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #2d2722;
+    color: #ffffff;
+    border: none;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #9a7650;
+}
+
+footer {
+    background-color: #2d2722;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #d8d0c8;
+    margin: 5px 0;
+}
+
+
+/* ==============================
+   9. Responsive Design
+============================== */
+
+@media (max-width: 1000px) {
+    header {
+        padding: 18px 5%;
+    }
+
+    nav {
+        gap: 18px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about, .featured, .styles, .contact {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-text, .featured-text, .contact-text {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 750px) {
+    header {
+        position: relative;
+        background-color: #2d2722;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 58px;
+        letter-spacing: 8px;
+    }
+
+    .hero-content h2 {
+        font-size: 26px;
+        letter-spacing: 5px;
+    }
+
+    section, .about, .gallery-section, .featured, .styles, .share-section, .community-section, .contact {
+        padding: 60px 6%;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 42px;
+        letter-spacing: 5px;
+    }
+
+    .hero-content h2 {
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+
+    .hero-content p:nth-of-type(2) {
+        font-size: 18px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .style-list {
+        grid-template-columns: 1fr;
+    }
+
+    #artForm, .contact-form {
+        padding: 25px 20px;
+    }
+}
